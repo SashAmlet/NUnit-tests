@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<NUnit>
+			<TestAssemblyPaths>$(SolutionDir)\LAB_NUnit_xUnit.Tests\bin\Debug\net5.0\LAB_NUnit_xUnit.Tests.dll</TestAssemblyPaths>
+			<TestFilter>Category=Preparation</TestFilter>
+		</NUnit>
+	</RunConfiguration>
+</RunSettings>

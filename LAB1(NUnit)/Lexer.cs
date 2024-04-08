@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace LAB1_NUnit
+namespace LAB_NUnit_xUnit
 {
     public class Lexer
     {

@@ -1,13 +1,15 @@
-﻿using NUnit.Framework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace LAB1_NUnit.Tests
+
+namespace LAB_NUnit_xUnit.Tests
 {
     [TestFixture]
-    public class LexerTests
+    [Category("MainPart")]
+    public class NUnitTest2
     {
         private Lexer lexer;
 
@@ -16,36 +18,12 @@ namespace LAB1_NUnit.Tests
         {
             lexer = new Lexer();
         }
-
-        [Test]
-        public void ReadFile_ValidPath_ReturnsFileContent()
-        {
-            string path = @"test.txt";
-            string expectedContent = "This is a test file content.";
-            // Create a test file with expected content
-            System.IO.File.WriteAllText(path, expectedContent);
-
-            string actualContent = Lexer.ReadFile(path);
-
-            Assert.AreEqual(expectedContent, actualContent);
-        }
-
-        [Test]
-        public void PrepareTextForLA_InputWithComments_RemovesComments()
-        {
-            string inputText = "This is a line with // comments";
-            string expectedText = "This is a line with";
-
-            string actualText = Lexer.PrepareTextForLA(inputText);
-
-            Assert.AreEqual(expectedText, actualText);
-        }
-
         [Test]
         public void HighlightLexemes_EmptyCode_NoOutput()
         {
             string emptyCode = "";
             Assert.DoesNotThrow(() => lexer.HighlightLexemes(emptyCode));
+            Thread.Sleep(1000); // Delay
         }
 
         [Test]
@@ -53,22 +31,8 @@ namespace LAB1_NUnit.Tests
         {
             string nullCode = null;
             Assert.Throws<ArgumentNullException>(() => lexer.HighlightLexemes(nullCode));
+            Thread.Sleep(1000); // Delay
         }
-
-        [Test]
-        public void ReadFile_NullCode_ThrowsArgumentNullException()
-        {
-            string path = null;
-            Assert.DoesNotThrow(() => Lexer.ReadFile(path));
-        }
-
-        [Test]
-        public void HighlightLexemes_InvalidCode_NoExceptionThrown()
-        {
-            string invalidCode = "This is not valid code!";
-            Assert.DoesNotThrow(() => lexer.HighlightLexemes(invalidCode));
-        }
-
         [Test]
         public void HighlightLexemes_ValidCode_HighlightsLexemes()
         {
@@ -82,7 +46,10 @@ namespace LAB1_NUnit.Tests
                 string consoleOutput = sw.ToString().Trim();
                 Assert.AreEqual(expectedOutput, consoleOutput);
             }
+            Thread.Sleep(1000); // Delay
         }
+
+
 
         // метчер для перевірки відповідності вихідної строки регулярному виразу
         [Test]
@@ -98,28 +65,9 @@ namespace LAB1_NUnit.Tests
 
                 Assert.That(consoleOutput, Does.Match(lexer.GetRegularExpression()));
             }
+            Thread.Sleep(1000); // Delay
         }
 
-        // метчер для перевірки наявності коментарів після обробки
-        [Test]
-        public void PrepareTextForLA_RemovesComments()
-        {
-            // Arrange
-            string inputText = @"
-                    // This is a comment
-                    /* Multi-line
-                       comment */
-                    int main() {
-                        return 0;
-                    }
-                ";
-
-            // Act
-            string processedText = Lexer.PrepareTextForLA(inputText);
-
-            // Assert
-            Assert.That(processedText, Does.Not.Match(@"//.*|/\*.*?\*/"));
-        }
 
         // параметризований тестовий метод
         [Test]
@@ -129,11 +77,12 @@ namespace LAB1_NUnit.Tests
         {
             using (StringWriter sw = new())
             {
-                
+
                 string consoleOutput = sw.ToString().Trim();
                 string preparedCode = Lexer.PrepareTextForLA(input);
                 Assert.AreEqual(expected, preparedCode);
             }
+            Thread.Sleep(1000); // Delay
         }
     }
 }

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RunSettings>
+	<RunConfiguration>
+		<!-- Запуск усіх тестів паралельно-->
+		<MaxCpuCount>4</MaxCpuCount>
+		<ParallelizeAssemblies>true</ParallelizeAssemblies>
+	</RunConfiguration>
+</RunSettings>
